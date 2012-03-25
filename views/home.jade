@@ -1,0 +1,13 @@
+#container
+    #logo
+        a(href='/')
+            img(src='/images/logo.png')
+    #display
+        #login        
+            form(method='post')
+                | Enter your name if you want to be a ninja
+                div
+                    input(type='text', name='username')
+                    input(type='submit', value='Log In')
+        
+    include footer

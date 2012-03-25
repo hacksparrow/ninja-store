@@ -1,0 +1,12 @@
+#container
+    #logo
+        img(src='/images/logo.png')
+    #display
+        include userbar
+            
+        -for (var id in items)
+            - var item = items[id]
+            div
+                a(href='/item/#{id}') #{item.name} - $#{item.price}
+        
+    include footer
