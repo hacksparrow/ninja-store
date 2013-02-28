@@ -1,43 +1,31 @@
+var express = require('express')
+  , http = require('http')
+  , path = require('path');
 
-/**
- * Module dependencies.
- */
-
-var express = require('express');
-var http = require('http');
-var store = require('./routes/store');
-
+var store = store = require('./routes/store');
 var app = express();
-var server = http.createServer(app);
-
-// Configuration
 
 app.configure(function(){
-  app.set('view engine', 'jade');
-  app.set('view options', { layout: false });
+  app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
+  app.set('view engine', 'jade');
+  app.use(express.favicon());
+  app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(express.cookieParser());
-  app.use(express.session({ secret: 'your secret here' }));
-  app.use(require('stylus').middleware({ src: __dirname + '/public' }));
-  app.use(express.static(__dirname + '/public'));
+  app.use(express.cookieParser('your secret here'));
+  app.use(express.session());
   app.use(app.router);
+  app.use(require('stylus').middleware(__dirname + '/public'));
+  app.use(express.static(path.join(__dirname, 'public')));
 });
 
 app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-});
-
-app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
-// Routes
-
 app.get('/', store.home);
 app.post('/', store.home_post_handler);
-
 // display the list of item
 app.get('/items', store.items);
 // show individual item
@@ -50,6 +38,6 @@ app.get('/logout', function(req, res) {
     // redirect user to homepage
     res.redirect('/');
 });
-
-server.listen(3000);
-console.log("Express server listening on port %d in %s mode", server.address().port, app.settings.env);
+http.createServer(app).listen(app.get('port'), function(){
+  console.log("Express server listening on port " + app.get('port'));
+});
