@@ -1,12 +1,13 @@
 extends layout
 
 block content
-    #container
-        #logo
-            img(src='/images/logo.png')
-        #display
-            block userbar
-            
-            p The #{name.toLowerCase()} is one of the must-have items for any aspiring ninja. It costs just $#{price} on our store.
-            p Buy it today!
-        block footer
+  #wrapper
+    #logo
+      img(src='/images/logo.png')
+    #display
+      include userbar
+      
+      p The #{name.toLowerCase()} is one of the must-have items for any aspiring ninja. It costs just $#{price} on our store.
+      p Buy it today!
+      
+    include footer
