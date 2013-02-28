@@ -1,11 +1,11 @@
 extends layout
 
 block content
-    #container
-        #logo
-            a(href='/')
-                img(src='/images/logo.png')
-        #display
-            p!= content
-            
-        block footer
+  #wrapper
+    #logo
+      a(href='/')
+        img(src='/images/logo.png')
+    #display
+      p!= content
+      
+    include footer
