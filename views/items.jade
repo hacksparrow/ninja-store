@@ -1,14 +1,15 @@
 extends layout
 
 block content
-    #container
-        #logo
-            img(src='/images/logo.png')
-        #display
-            include includes/userbar
-                
-            -for (var id in items)
-                - var item = items[id]
-                div
-                    a(href='/item/#{id}') #{item.name} - $#{item.price}
-        include includes/footer
+  #wrapper
+    #logo
+      img(src='/images/logo.png')
+    #display
+      include userbar
+        
+      -for (var id in items)
+        - var item = items[id]
+        div
+          a(href='/item/#{id}') #{item.name} - $#{item.price}
+      
+    include footer
