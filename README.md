@@ -1,5 +1,8 @@
-NINJA STORE
+Ninja Store
 ===========
+
+**NOTE**: Requires Express 3.x / Not compatible with Express 4.x
+
 -----------
 Ninja Store is a very simple Express.js app for you to hack around and uderstand Express better.
 
